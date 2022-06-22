@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.model.produto;
+
+import org.example.model.produto.Categoria;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,12 +12,17 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 128, nullable = false)
     private String nome;
 
+    @Column(length = 512)
     private String descricao;
 
     @Column(precision = 10, scale = 4)
     private BigDecimal preco;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -47,5 +54,13 @@ public class Produto {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

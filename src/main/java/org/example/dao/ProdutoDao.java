@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.model.Produto;
+import org.example.model.produto.Produto;
 
 import javax.persistence.EntityManager;
 
