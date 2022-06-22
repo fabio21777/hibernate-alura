@@ -1,7 +1,4 @@
 package org.example.model.produto;
-
-import org.example.model.produto.Categoria;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -21,7 +18,7 @@ public class Produto {
     @Column(precision = 10, scale = 4)
     private BigDecimal preco;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Categoria categoria;
 
     public Long getId() {

@@ -1,13 +1,24 @@
 package org.example.model.produto;
 
-public enum Categoria {
-    CELULARES ("Celulares"),
-    INFORMATICA("Informática"),
-    LIVROS("Livros");
+import javax.persistence.*;
 
-    private String descricao;
+@Entity
+@Table(name = "categoria")
+public class Categoria {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private  Long id;
+    private  String nome;
 
-    Categoria(String descricao) {
-        this.descricao = descricao;
+    public Categoria(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
