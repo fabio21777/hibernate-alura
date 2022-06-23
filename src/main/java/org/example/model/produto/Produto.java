@@ -21,6 +21,13 @@ public class Produto {
     @ManyToOne
     private Categoria categoria;
 
+    public Produto() {
+    }
+
+    public Produto(String phone, BigDecimal bigDecimal, String xiomi, Categoria phoner) {
+
+    }
+
     public Long getId() {
         return id;
     }
