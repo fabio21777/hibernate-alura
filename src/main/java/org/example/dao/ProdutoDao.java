@@ -26,4 +26,9 @@ public class ProdutoDao {
         return this.em.createQuery("select p from Produto p", Produto.class).getResultList();
     }
 
+    public List<Produto> buscarPorNome(String nome) {
+        return this.em.createQuery("select p from Produto p where p.nome =  :nome", Produto.class)
+                .setParameter("nome", nome)
+                .getResultList();
+    }
 }
