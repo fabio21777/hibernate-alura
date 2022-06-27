@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.model.produto.Produto;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProdutoDao {
@@ -35,5 +36,11 @@ public class ProdutoDao {
         return this.em.createQuery("select p from Produto p INNER JOIN Categoria as c on p.categoria = c.id  where c.nome =  :nome", Produto.class)
                 .setParameter("nome", nome)
                 .getResultList();
+    }
+
+    public BigDecimal buscarPrecoDoProdutoPeloNome(String nome){
+        return this.em.createQuery("select p.preco from Produto p where p.nome =  :nome", BigDecimal.class)
+                .setParameter("nome", nome)
+                .getSingleResult();
     }
 }
