@@ -31,4 +31,9 @@ public class ProdutoDao {
                 .setParameter("nome", nome)
                 .getResultList();
     }
+    public List<Produto> buscarPorNomeCategoria(String nome) {
+        return this.em.createQuery("select p from Produto p INNER JOIN Categoria as c on p.categoria = c.id  where c.nome =  :nome", Produto.class)
+                .setParameter("nome", nome)
+                .getResultList();
+    }
 }
