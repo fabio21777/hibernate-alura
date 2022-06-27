@@ -12,10 +12,10 @@ public class Produto {
     @Column(length = 128, nullable = false)
     private String nome;
 
-    @Column(length = 512)
+    @Column(length = 512, nullable = true)
     private String descricao;
 
-    @Column(precision = 10, scale = 4)
+    @Column(precision = 10, scale = 4,nullable = true)
     private BigDecimal preco;
 
     @ManyToOne
@@ -23,11 +23,12 @@ public class Produto {
 
     public Produto() {
     }
-
-    public Produto(String phone, BigDecimal bigDecimal, String xiomi, Categoria phoner) {
-
+    public Produto(String nome, String descricao, BigDecimal valor, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = valor;
+        this.categoria = categoria;
     }
-
     public Long getId() {
         return id;
     }

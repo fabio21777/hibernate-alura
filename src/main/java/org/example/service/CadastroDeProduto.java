@@ -1,28 +1,35 @@
 package org.example.service;
 
 import org.example.dao.CategoriaDao;
+import org.example.dao.ProdutoDao;
 import org.example.model.produto.Categoria;
+import org.example.model.produto.Produto;
 import org.example.util.JPAUtil;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.util.List;
 
 public class CadastroDeProduto {
     public static void main(String[] args) {
+        Categoria celulares = new Categoria("CELULARES");
+        Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal("800"), celulares );
 
-        Categoria phoner = new Categoria("PHONER");
-        EntityManager entityManager = JPAUtil.getEntityManager();
-        CategoriaDao categoriaDao = new CategoriaDao(entityManager);
-        entityManager.getTransaction().begin();
-        categoriaDao.cadastrar(phoner);
-        categoriaDao.atualizar(phoner);
-        phoner.setNome("PHONER X");
-        entityManager.flush();
-        entityManager.clear();
-        categoriaDao.atualizar(phoner);
-        phoner.setNome("xiomi");
-        entityManager.flush();
-        categoriaDao.remover(phoner);
-        entityManager.getTransaction().commit();
+        EntityManager em = JPAUtil.getEntityManager();
+        ProdutoDao produtoDao = new ProdutoDao(em);
+        CategoriaDao categoriaDao = new CategoriaDao(em);
+
+        em.getTransaction().begin();
+
+        categoriaDao.cadastrar(celulares);
+        produtoDao.cadastrar(celular);
+
+        em.getTransaction().commit();
+        Produto p = produtoDao.buscarPorId(1l);
+        System.out.println(p.getPreco());
+
+        List<Produto> todos = produtoDao.buscarTodos();
+        todos.forEach(p2 -> System.out.println(p2.getNome()));
+        em.close();
     }
-
 }
