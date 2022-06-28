@@ -18,7 +18,7 @@ public class Produto {
     @Column(precision = 10, scale = 4,nullable = true)
     private BigDecimal preco;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
     public Produto() {

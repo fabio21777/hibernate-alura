@@ -20,6 +20,9 @@ public class PedidoDao {
         System.out.println("Cadastrando pedido...");
         this.em.persist(pedido);
     }
+    public Pedido buscarPorId(Long id) {
+        return this.em.find(Pedido.class, id);
+    }
 
     public void atualizar(Pedido pedido) {
         pedido = em.merge(pedido);
@@ -34,7 +37,7 @@ public class PedidoDao {
     }
 
     public List<RelatorioDeVendasVo> relatorioDeVendas(){
-        String jpql = "select new  org.example.vo.RelatorioDeVendasVo"+
+        String jpql = "SELECT new  org.example.vo.RelatorioDeVendasVo"+
                 "("+
                     " produto.nome, " +
                     "sum(item.quantidade)," +
@@ -46,6 +49,12 @@ public class PedidoDao {
                 " GROUP BY produto.nome " +
                 " ORDER BY sum(item.quantidade) DESC ";
         return this.em.createQuery(jpql, RelatorioDeVendasVo.class).getResultList();
+    }
+
+    public  Pedido buscarPedidoComCliente(Long id){
+        return this.em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id", Pedido.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
 }

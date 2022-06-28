@@ -18,11 +18,11 @@ public class Pedido {
     @Column(name = "valor_total", precision = 10, scale = 4)
     private BigDecimal valorTotal = BigDecimal.ZERO;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     List<ItemPedido> itens = new ArrayList<>();
 
 

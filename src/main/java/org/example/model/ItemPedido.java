@@ -15,11 +15,11 @@ public class ItemPedido {
     @Column(name = "valor_unitario",precision = 10, scale = 4)
     private BigDecimal valorUnitario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id")
     Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
     Produto produto;
 
