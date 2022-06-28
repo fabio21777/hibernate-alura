@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.model.Categoria;
 import org.example.model.Pedido;
+import org.example.vo.RelatorioDeVendasVo;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -32,14 +33,19 @@ public class PedidoDao {
         return this.em.createQuery("select sum(p.valorTotal) from Pedido p", BigDecimal.class).getSingleResult();
     }
 
-    public List<Object[]> relatorioDeVendas(){
-        String jpql = "SELECT produto.nome, sum(item.quantidade),max(pedido.data)" +
+    public List<RelatorioDeVendasVo> relatorioDeVendas(){
+        String jpql = "select new  org.example.vo.RelatorioDeVendasVo"+
+                "("+
+                    " produto.nome, " +
+                    "sum(item.quantidade)," +
+                    "max(pedido.data)" +
+                ")"+
                 " FROM Pedido pedido " +
                 " JOIN pedido.itens item " +
                 " JOIN item.produto produto " +
                 " GROUP BY produto.nome " +
                 " ORDER BY sum(item.quantidade) DESC ";
-        return this.em.createQuery(jpql, Object[].class).getResultList();
+        return this.em.createQuery(jpql, RelatorioDeVendasVo.class).getResultList();
     }
 
 }
