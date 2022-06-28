@@ -54,6 +54,7 @@ public class CadastroDeProduto {
         em.clear();
         //Pedido pedidoSemCliente = pedidoDao.buscarPorId(2L);
         Pedido pedidoComCliente = pedidoDao.buscarPedidoComCliente(2L);
+        List<Produto> produtos = produtoDao.buscarProdutosComParametrosCriteria("Xiaomi",new BigDecimal("800"),LocalDate.now());
         em.getTransaction().commit();
         em.close();
         System.out.println("nome do cliente do pedido --buscarPedidoComCliente" + pedidoComCliente.getCliente().getNome());

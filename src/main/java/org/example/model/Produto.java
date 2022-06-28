@@ -1,6 +1,7 @@
 package org.example.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "produtos")
@@ -20,6 +21,8 @@ public class Produto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
+
+    private LocalDate dataCadastro = LocalDate.now();
 
     public Produto() {
     }
@@ -67,5 +70,13 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }
