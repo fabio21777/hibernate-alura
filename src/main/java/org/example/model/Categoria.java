@@ -1,4 +1,4 @@
-package org.example.model.produto;
+package org.example.model;
 
 import javax.persistence.*;
 

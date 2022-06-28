@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.model.produto.Produto;
+import org.example.model.Produto;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;

@@ -2,8 +2,8 @@ package org.example.service;
 
 import org.example.dao.CategoriaDao;
 import org.example.dao.ProdutoDao;
-import org.example.model.produto.Categoria;
-import org.example.model.produto.Produto;
+import org.example.model.Categoria;
+import org.example.model.Produto;
 import org.example.util.JPAUtil;
 
 import javax.persistence.EntityManager;
