@@ -13,6 +13,7 @@ public class CategoriaDao {
     }
 
     public void cadastrar(Categoria categoria) {
+        System.out.println("Cadastrando categoria...");
         this.em.persist(categoria);
     }
 

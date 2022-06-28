@@ -12,6 +12,7 @@ public class ItemPedido {
 
     private Integer quantidade;
 
+    @Column(name = "valor_unitario",precision = 10, scale = 4)
     private BigDecimal valorUnitario;
 
     @ManyToOne
