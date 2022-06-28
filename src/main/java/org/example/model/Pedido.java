@@ -22,7 +22,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pedido")
     List<ItemPedido> itens = new ArrayList<>();
 
 
@@ -32,7 +32,14 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+
     public Pedido() {
+    }
+
+    public void addItem(ItemPedido item) {
+        item.setPedido(this);
+        itens.add(item);
+
     }
 
     public Long getId() {
