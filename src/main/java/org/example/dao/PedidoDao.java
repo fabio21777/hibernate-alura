@@ -4,6 +4,7 @@ import org.example.model.Categoria;
 import org.example.model.Pedido;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 
 public class PedidoDao {
 
@@ -24,6 +25,10 @@ public class PedidoDao {
     public void remover(Pedido pedido) {
         pedido = em.merge(pedido);
         this.em.remove(pedido);
+    }
+
+    public BigDecimal valorTotalVendido() {
+        return this.em.createQuery("select sum(p.valorTotal) from Pedido p", BigDecimal.class).getSingleResult();
     }
 
 }
