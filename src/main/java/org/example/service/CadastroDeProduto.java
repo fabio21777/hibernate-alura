@@ -38,6 +38,19 @@ public class CadastroDeProduto {
 
         System.out.println("Valor Total pedido" +valorTotalVendido);
 
+        List<Object[]> relatorioDeVendas = pedidoDao.relatorioDeVendas();
+
+        for (Object[] objects : relatorioDeVendas) {
+            System.out.println(new StringBuilder()
+                    .append("Relatorio de vendas")
+                    .append("---")
+                    .append(objects[0])
+                    .append(" ")
+                    .append(objects[1])
+                    .append(" ")
+                    .append(objects[2]).toString());
+        }
+
         em.getTransaction().commit();
 
 

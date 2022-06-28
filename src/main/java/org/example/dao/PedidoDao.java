@@ -5,6 +5,7 @@ import org.example.model.Pedido;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class PedidoDao {
 
@@ -29,6 +30,16 @@ public class PedidoDao {
 
     public BigDecimal valorTotalVendido() {
         return this.em.createQuery("select sum(p.valorTotal) from Pedido p", BigDecimal.class).getSingleResult();
+    }
+
+    public List<Object[]> relatorioDeVendas(){
+        String jpql = "SELECT produto.nome, sum(item.quantidade),max(pedido.data)" +
+                " FROM Pedido pedido " +
+                " JOIN pedido.itens item " +
+                " JOIN item.produto produto " +
+                " GROUP BY produto.nome " +
+                " ORDER BY sum(item.quantidade) DESC ";
+        return this.em.createQuery(jpql, Object[].class).getResultList();
     }
 
 }
