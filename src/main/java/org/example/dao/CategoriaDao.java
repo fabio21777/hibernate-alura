@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.model.Categoria;
+import org.example.model.CategoriaId;
 
 import javax.persistence.EntityManager;
 
@@ -17,6 +18,9 @@ public class CategoriaDao {
         this.em.persist(categoria);
     }
 
+    public Categoria buscarPorId(CategoriaId id) {
+        return this.em.find(Categoria.class, id);
+    }
     public void atualizar(Categoria categoria) {
         categoria = em.merge(categoria);
     }
